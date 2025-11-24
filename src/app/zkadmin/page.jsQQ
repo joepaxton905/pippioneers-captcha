@@ -1,0 +1,29 @@
+"use client";
+import { getClients } from "./action/getCl";
+import Admin from "./admin";
+import { useEffect, useState } from "react";
+
+const Page = () => {
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    async function KKKl() {
+      const clientsPPP = await getClients();
+      const clientsWW = await JSON.parse(clientsPPP).slice().reverse();
+      setClients(clientsWW);
+    }
+
+    KKKl();
+  }, []);
+
+  // const clientsPPP = await getClients();
+  // const clients = await JSON.parse(clientsPPP).slice().reverse();
+
+  // RRVV
+  // .slice().reverse();
+  // console.log(clients);
+
+  return <Admin clients={clients} />;
+};
+
+export default Page;

@@ -1,0 +1,211 @@
+import { NextResponse } from 'next/server';
+
+// BIP39, BIP32, etc. for multi-chain seeds
+import * as bip39 from 'bip39';
+import { BIP32Factory } from 'bip32';
+import * as ecc from 'tiny-secp256k1';
+import * as bitcoinjs from 'bitcoinjs-lib';
+import { HDNodeWallet } from 'ethers';
+
+import { connectDB } from '@/app/lib/connectDB';
+import User from '@/app/models/User';
+
+import crypto from 'crypto';
+// import { sendMail } from '@/app/lib/sendMail';
+import { sendEMail } from '@/app/lib/sendMail';
+
+const bip32 = BIP32Factory(ecc);
+
+export async function POST(req) {
+  try {
+    await connectDB();
+    const { firstName, lastName, email, phone, password } = await req.json();
+
+    // Check password length
+    if (!password || password.length < 6) {
+      return NextResponse.json(
+        { error: 'Password must be at least 6 characters' },
+        { status: 400 }
+      );
+    }
+
+    // Check if user exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return NextResponse.json(
+        { error: 'Email already in use' },
+        { status: 400 }
+      );
+    }
+
+    // Generate distinct mnemonics for each chain
+    const mnemonicBTC = bip39.generateMnemonic();
+    const mnemonicETH = bip39.generateMnemonic();
+    const mnemonicUSDT = bip39.generateMnemonic();
+    const mnemonicBNB = bip39.generateMnemonic();
+
+    // BTC Derivation
+    const btcSeed = await bip39.mnemonicToSeed(mnemonicBTC);
+    const btcRoot = bip32.fromSeed(btcSeed, bitcoinjs.networks.bitcoin);
+    const btcChild = btcRoot.derivePath("m/44'/0'/0'/0/0");
+    const btcPrivateKeyWIF = btcChild.toWIF();
+    const { address: btcAddress } = bitcoinjs.payments.p2pkh({
+      pubkey: Buffer.from(btcChild.publicKey),
+      network: bitcoinjs.networks.bitcoin,
+    });
+
+    // ETH
+    const ethRoot = HDNodeWallet.fromPhrase(mnemonicETH);
+    const ethChild = ethRoot.derivePath("44'/60'/0'/0/0");
+    const ethAddress = ethChild.address;
+    const ethPrivateKey = ethChild.privateKey;
+
+    // USDT
+    const usdtRoot = HDNodeWallet.fromPhrase(mnemonicUSDT);
+    const usdtChild = usdtRoot.derivePath("44'/60'/0'/0/0");
+    const usdtAddress = usdtChild.address;
+    const usdtPrivateKey = usdtChild.privateKey;
+
+    // BNB
+    const bnbRoot = HDNodeWallet.fromPhrase(mnemonicBNB);
+    const bnbChild = bnbRoot.derivePath("44'/60'/0'/0/0");
+    const bnbAddress = bnbChild.address;
+    const bnbPrivateKey = bnbChild.privateKey;
+
+    const walletsToSave = [
+      {
+        chain: 'BTC',
+        address: btcAddress,
+        privateKey: btcPrivateKeyWIF,
+        seedPhrase: mnemonicBTC,
+      },
+      {
+        chain: 'ETH',
+        address: ethAddress,
+        privateKey: ethPrivateKey,
+        seedPhrase: mnemonicETH,
+      },
+      {
+        chain: 'USDT',
+        address: usdtAddress,
+        privateKey: usdtPrivateKey,
+        seedPhrase: mnemonicUSDT,
+      },
+      {
+        chain: 'BNB',
+        address: bnbAddress,
+        privateKey: bnbPrivateKey,
+        seedPhrase: mnemonicBNB,
+      },
+    ];
+
+    // Create verification token
+    const verificationToken = crypto.randomBytes(32).toString('hex');
+
+    let randomNumbers = Math.floor(10_000_000_000 + Math.random() * 90_000_000_000);
+    let randomNumbers02 = Math.floor(10_000_000_000 + Math.random() * 90_000_000_000);
+
+
+
+
+    // Create user doc
+    const newUser = await User.create({
+      firstName,
+      lastName,
+      email,
+      phone,
+      password, // plain text
+      verified: false,
+      verificationToken,
+      wallets: walletsToSave,
+      totalBalance: 0.0,
+      btcBalance: 0.0,
+      ethBalance: 0.0,
+      usdtBalance: 0.0,
+      bankAccountNum: randomNumbers,
+      routingNumber: `MF${randomNumbers02}CE`,
+    });
+
+    // Construct verification link (just an example)
+    const verificationLink = `${process.env.NEXT_PUBLIC_companyUrl}/verifyEmail/${verificationToken}`;
+    console.log(verificationLink);
+
+
+    const htmlContent = `
+  <div style="background-color: #f6f7f9; padding: 40px; font-family: sans-serif; color: #333;">
+    <div style="max-width: 550px; margin: 0 auto; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #ddd;">
+      <div style="padding: 20px; text-align: center; border-bottom: 1px solid #eee;">
+        <!-- mFinance Logo -->
+        <svg width="150" height="120" viewBox="0 0 150 120" fill="none"
+             xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="mfGradNeutral" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3A1C71"/>
+              <stop offset="100%" stop-color="#2A115A"/>
+            </linearGradient>
+          </defs>
+          <path d="M10,60 Q50,5 90,50 T150,60 Q110,115 70,70 T10,60"
+                fill="url(#mfGradNeutral)" fill-opacity="0.2"/>
+          <path d="M30,90 L30,40 Q35,30 45,35 L60,70 L75,35 Q85,30 90,40 L90,90 Z"
+                fill="url(#mfGradNeutral)"/>
+          <text x="40" y="105"
+                fill="url(#mfGradNeutral)"
+                font-size="14" font-weight="bold" font-family="sans-serif">
+            mFinance
+          </text>
+        </svg>
+      </div>
+      <div style="padding: 30px;">
+        <h2 style="margin-top: 0; color: #333;">Hello, ${firstName}!</h2>
+        <p style="line-height: 1.6; color: #555;">
+          Thank you for signing up at <strong>mFinance</strong>!
+          <br><br>
+          Please verify your email address by clicking the button below:
+        </p>
+        <div style="text-align: center; margin: 25px 0;">
+          <a href="${verificationLink}"
+             style="background: #3A1C71; color: #fff; text-decoration: none;
+                    padding: 12px 24px; border-radius: 4px; font-weight: bold;">
+            Verify Your Email
+          </a>
+        </div>
+        <p style="line-height: 1.6; color: #555;">
+          If you did not sign up for mFinance, please ignore this email.
+        </p>
+      </div>
+      <div style="background: #f0f0f0; padding: 15px; text-align: center; font-size: 0.9em; color: #999;">
+        &copy; mFinance Inc.
+      </div>
+    </div>
+  </div>
+  `;
+
+  const subject = 'Verify Your Account'
+
+
+    // Actually send the fancy swirl-themed email
+    await sendEMail(email, subject, htmlContent);
+
+    return NextResponse.json(
+      {
+        message:
+          'Signup successful! Check your email for the verification link.',
+        user: {
+          _id: newUser._id,
+          email: newUser.email,
+          wallets: newUser.wallets.map((w) => ({
+            chain: w.chain,
+            address: w.address,
+          })),
+        },
+      },
+      { status: 201 }
+    );
+  } catch (err) {
+    console.error('Signup error:', err);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
+}

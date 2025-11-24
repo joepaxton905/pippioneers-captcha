@@ -1,0 +1,566 @@
+/* Add font import at the top of the file */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+
+/* Header Container */
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+/* Status bar for mobile notches */
+.statusBar {
+  height: env(safe-area-inset-top, 0px);
+  min-height: env(safe-area-inset-top, 0px);
+  background-color: #151b46;
+  width: 100%;
+}
+
+/* Main header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(135deg, #151b46 0%, #2c3782 100%);
+  color: white;
+  padding: 16px 20px;
+  padding-top: calc(16px + env(safe-area-inset-top, 0px));
+  padding-left: max(20px, env(safe-area-inset-left, 20px));
+  padding-right: max(20px, env(safe-area-inset-right, 20px));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Header when scrolled */
+.headerScrolled {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-bottom: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Beautiful glow effect */
+.headerGlow {
+  position: absolute;
+  top: -150px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(101, 118, 255, 0.3) 0%, rgba(101, 118, 255, 0) 70%);
+  filter: blur(30px);
+  opacity: 0.6;
+  z-index: 0;
+  animation: pulseGlow 6s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Header pattern */
+.headerPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 150%, rgba(101, 118, 255, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 80% 30%, rgba(101, 118, 255, 0.05) 0%, transparent 50%);
+  z-index: 0;
+}
+
+/* Left section */
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+/* Back button */
+.backButton {
+  background-color: rgba(255, 255, 255, 0.12);
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  padding: 0;
+}
+
+.backButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.backButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.backButton svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+/* Logo container */
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.logoMain {
+  font-weight: 700;
+  font-size: 2.5rem;
+  /* Increased from 2rem */
+  letter-spacing: -0.02em;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1.2;
+}
+
+.logoAccent {
+  color: #6576ff;
+  font-weight: 700;
+}
+
+/* Right section */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 1;
+}
+
+/* User badge */
+.userBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 6px;
+  padding-right: 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.userBadge:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.userBadge:active {
+  transform: translateY(1px);
+}
+
+/* User avatar */
+.userAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #6576ff;
+  background-image: linear-gradient(135deg, #6576ff 0%, #8b96ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.userAvatarGlow {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* User info */
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.greeting {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 400;
+}
+
+.userName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.verifiedBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6576ff;
+}
+
+.verifiedBadge svg {
+  width: 14px;
+  height: 14px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+/* Loading states */
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 6px 14px 6px 6px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  height: 48px;
+}
+
+.skeletonCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: pulse 1.5s infinite;
+}
+
+.skeletonText {
+  width: 70px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Notification button */
+.notificationButton {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
+  padding: 0;
+  color: white;
+}
+
+.notificationButton:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.notificationButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notificationButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.notificationDot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff3366;
+  box-shadow: 0 0 0 2px #151b46, 0 0 0 4px rgba(255, 51, 102, 0.3);
+  animation: blink 3s infinite;
+}
+
+@keyframes blink {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 2px #151b46, 0 0 0 3px rgba(255, 51, 102, 0.2);
+  }
+
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px #151b46, 0 0 0 4px rgba(255, 51, 102, 0.4);
+  }
+
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 2px #151b46, 0 0 0 3px rgba(255, 51, 102, 0.2);
+  }
+}
+
+/* Notification panel */
+.notificationPanel {
+  position: absolute;
+  width: 320px;
+  background-color: white;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-out;
+  z-index: 9999;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notificationHeader {
+  padding: 18px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdfdfd;
+}
+
+.notificationTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.notificationSettingsButton {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.notificationSettingsButton:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.notificationSettingsButton svg {
+  width: 18px;
+  height: 18px;
+}
+
+.notificationBody {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.emptyNotifications {
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.emptyNotificationIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #f5f7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: #6576ff;
+}
+
+.emptyNotificationIcon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emptyTitle {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.emptyText {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #888;
+  max-width: 220px;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .greeting {
+    display: none;
+  }
+
+  .userBadge {
+    padding-right: 10px;
+  }
+
+  .header {
+    padding: 14px 16px;
+    padding-top: calc(14px + env(safe-area-inset-top, 0px));
+  }
+
+  .backButton,
+  .notificationButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logoMain {
+    font-size: 2.2rem;
+    
+
+    /* Increased for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .logoMain {
+    font-size: 1.8rem;
+  }
+
+  .leftSection {
+    gap: 8px;
+  }
+
+  .rightSection {
+    gap: 6px;
+  }
+
+  .userBadge {
+    padding: 4px;
+    padding-right: 8px;
+  }
+
+  .userAvatar {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .userName {
+    font-size: 0.85rem;
+  }
+
+  .greeting {
+    display: none;
+  }
+
+  .backButton,
+  .notificationButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .backButton svg,
+  .notificationButton svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .header {
+    padding: 12px 14px;
+    padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  }
+
+  .verifiedBadge svg {
+    width: 12px;
+    height: 12px;
+  }
+}

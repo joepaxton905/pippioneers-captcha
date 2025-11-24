@@ -1,0 +1,152 @@
+.mtable {
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  width: 92%;
+  margin: 12px auto;
+  transition: all 0.2s ease;
+}
+
+.mtable:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.mtableT {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.mtableD {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.mHeader {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 4px;
+  margin: 16px auto;
+  width: 92%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navButton {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.navButtonActive {
+  background-color: #3366ff;
+  color: white;
+}
+
+.navButtonInactive {
+  background-color: transparent;
+  color: #333;
+}
+
+.navButtonInactive:hover {
+  background-color: #f5f7ff;
+}
+
+.tradeCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.currencyPair {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+.executionType {
+  margin-left: 8px;
+  color: #3366ff;
+  font-size: 0.9rem;
+}
+
+.amount {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.gainAmount {
+  color: #22c55e;
+}
+
+.lossAmount {
+  color: #ef4444;
+}
+
+.lotSize {
+  color: #666;
+}
+
+.dateText {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 48px 16px;
+  color: #666;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 24px auto;
+  width: 92%;
+  font-size: 1rem;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.loadingSpinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 3px solid #3366ff;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+  margin-right: 12px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.historyContainer {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+}

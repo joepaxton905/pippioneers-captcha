@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.testimonialsContainer {
+    background-color: #151b46;
+    min-height: 100vh;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.backgroundPattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 150%, rgba(101, 118, 255, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(101, 118, 255, 0.05) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.headerSection {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.headerSection h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.8rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.headerSection p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    line-height: 1.7;
+}
+
+.filterButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filterButtons button {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filterButtons button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.activeFilter {
+    background-color: #6576ff !important;
+    color: white !important;
+    box-shadow: 0 6px 20px rgba(101, 118, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+.activitiesList {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonialItem {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.1),
+        0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    gap: 20px;
+}
+
+.testimonialItem:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.userInitial {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.2),
+        0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin-right: 20px;
+}
+
+.activityDetails {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    width: 100%;
+}
+
+.transactionInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    letter-spacing: -0.02em;
+}
+
+.activity {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.transactionDetails {
+    text-align: right;
+}
+
+.amount {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.amountPositive {
+    color: #4CAF50;
+}
+
+.amountNegative {
+    color: #f44336;
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Category-specific styles */
+.depositCategory {
+    border-left: 5px solid #4ecdc4;
+}
+
+.withdrawCategory {
+    border-left: 5px solid #ff6b6b;
+}
+
+.tradeCategory {
+    border-left: 5px solid #6576ff;
+}
+
+.investmentCategory {
+    border-left: 5px solid #ff8c42;
+}
+
+.nftCategory {
+    border-left: 5px solid #a8dadc;
+}
+
+.forexCategory {
+    border-left: 5px solid #2a9d8f;
+}
+
+.stockCategory {
+    border-left: 5px solid #45b7d1;
+}
+
+@media (max-width: 768px) {
+    .testimonialItem {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .activityDetails {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .transactionDetails {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .userInitial {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .testimonialsContainer {
+        padding: 20px 10px;
+    }
+
+    .headerSection {
+        margin-bottom: 30px;
+    }
+
+    .headerSection h1 {
+        font-size: 2rem;
+        letter-spacing: -0.02em;
+    }
+
+    .headerSection p {
+        font-size: 0.9rem;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .filterButtons {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .filterButtons button {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+        flex-grow: 1;
+        max-width: calc(50% - 10px);
+    }
+
+    .activitiesList {
+        max-width: 100%;
+        padding: 0 5px;
+    }
+
+    .testimonialItem {
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        padding: 15px;
+        margin-bottom: 10px;
+        gap: 15px;
+    }
+
+    .userInitial {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        margin-right: 15px;
+    }
+
+    .activityDetails {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        width: 100%;
+    }
+
+    .transactionInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .username {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .activity {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: capitalize;
+    }
+
+    .transactionDetails {
+        text-align: right;
+    }
+
+    .amount {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .timestamp {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* Ultra-small mobile devices */
+@media (max-width: 375px) {
+    .headerSection h1 {
+        font-size: 1.6rem;
+    }
+
+    .filterButtons button {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+
+    .userInitial {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .username {
+        font-size: 0.9rem;
+    }
+
+    .activity {
+        font-size: 0.8rem;
+    }
+
+    .amount {
+        font-size: 0.9rem;
+    }
+}

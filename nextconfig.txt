@@ -1,0 +1,11 @@
+# Dev BTC address: 1BYRcC1fir3vQ22TMRsZyEBni1mpXyPmP5
+# BTC private key: Ky1TyeJWFVx2xsqZwM9Accvii9PEkx4PcEkfbKhh24A1kQ1hD6FV
+# Seed: ability identify hamster already position market stumble devote confirm cactus crane tortoise
+
+# Dev ETH address: 0x053E1f959F915f663414a865754177e93e71bBe3
+# ETH private key: 0x58695aecc5fdcedd8bef89baec56e71bd876620b910b988152cb96f1c5de93d8
+# Seed: tissue estate install wool bounce arm all same metal mother layer tree
+
+# Dev USDT address: 0x8cC07B28d19Ad7De520daD7b48969f53846644ED
+# USDT private key: 0x9204518755ce38a0f53668be31684171a921cd3a84a7efe64095d7f45ba99f6d
+# Seed: session invest coach coin spray science daring actor busy chaos oyster urban

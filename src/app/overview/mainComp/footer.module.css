@@ -1,0 +1,97 @@
+.footer {
+  composes: variables from '../page.module.css';
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.footerGlass {
+  background: rgba(17, 25, 40, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  border-radius: 16px;
+  padding: 0.75rem;
+  width: 100%;
+  max-width: 500px;
+  pointer-events: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.footerNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+  padding: 0.5rem 0.25rem;
+  border-radius: 12px;
+  position: relative;
+  width: 64px;
+}
+
+.navLink:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.activeLink {
+  color: white;
+}
+
+.navIcon {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.navText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+.activeIndicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+  border-radius: 12px;
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .footerGlass {
+    padding: 0.75rem 1rem;
+    max-width: 600px;
+  }
+
+  .navLink {
+    width: 80px;
+  }
+
+  .navIcon {
+    font-size: 1.75rem;
+  }
+
+  .navText {
+    font-size: 1.2rem;
+  }
+}

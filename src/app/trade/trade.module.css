@@ -1,0 +1,55 @@
+.tradingTool {
+  margin: auto;
+  width: 98%;
+  height: 35vh;
+  display: flex;
+  margin-bottom: 40px;
+  margin-top: -2px;
+  border-radius: 8px;
+  /* border: solid; */
+}
+
+.box1 {
+  /* border: solid;
+  border-color: red; */
+  border-color: #f5f6fa;
+  width: 50%;
+  height: 13%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 766px) {
+  .box1 {
+    width: 100%;
+  }
+
+  .box1 {
+    height: 85%;
+  }
+}
+
+.lotSize {
+  display: flex;
+
+  justify-content: space-evenly;
+}
+
+.selectCurrency {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectExecution {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stopLoss {
+  display: flex;
+  justify-content: space-between;
+}
+
+.takeProfit {
+  display: flex;
+  justify-content: space-between;
+}

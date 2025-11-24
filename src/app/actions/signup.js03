@@ -1,0 +1,177 @@
+"use server";
+// Start
+// BIP39, BIP32, etc. for multi-chain seeds
+
+import * as bip39 from 'bip39';
+import { BIP32Factory } from 'bip32';
+import * as ecc from 'tiny-secp256k1';
+import * as bitcoinjs from 'bitcoinjs-lib';
+import { HDNodeWallet } from 'ethers';
+// End
+// import connectDB from "../utils/connectdb";
+import connectDB from '../utils/connectdb';
+import User from "../models/user";
+import jwt from "jsonwebtoken";
+import { createCookie } from "./setcookie";
+import shortid from "short-id";
+import emailValidator from "email-validator";
+import axios from "axios";
+import { emailVerifiCode } from "./emailverificode";
+
+
+
+
+const bip32 = BIP32Factory(ecc);
+export async function handleSignup(data) {
+  try {
+    await connectDB();
+    const { firstname, lastname, email, phone, password, confirmPassword } =
+      data;
+
+    if (
+      !firstname ||
+      !lastname ||
+      !phone ||
+      !email ||
+      !password ||
+      !confirmPassword
+    ) {
+      return { message: "Please fill in all details", status: "error" };
+    }
+
+    if (!emailValidator.validate(email)) {
+      return { message: "Invalid email address", status: "error" };
+    }
+
+    const existing_user = await User.findOne({ email: email });
+    if (existing_user) {
+      // console.log(email);
+
+      return { message: "User already exists", status: "error" };
+    }
+
+    if (password.length < 6) {
+      return { message: "Passwords should be 6 chars long", status: "error" };
+    }
+
+    if (password != confirmPassword) {
+      return { message: "Password do not match", status: "error" };
+    }
+
+
+    //   FOR BTC
+    // let resp = await axios.post(
+    //   "https://api.blockcypher.com/v1/btc/main/addrs"
+    // );
+    // const { public: publicKey, private: privateKey, wif, address } = resp.data;
+    // console.log(resp.data);
+    //
+
+    // Start New BTC
+  // Generate distinct mnemonics for each chain
+
+ const mnemonicBTC = bip39.generateMnemonic();
+ const mnemonicETH = bip39.generateMnemonic();
+
+
+
+    // BTC Derivation
+    const btcSeed = await bip39.mnemonicToSeed(mnemonicBTC);
+    const btcRoot = bip32.fromSeed(btcSeed, bitcoinjs.networks.bitcoin);
+    const btcChild = btcRoot.derivePath("m/44'/0'/0'/0/0");
+    const btcPrivateKeyWIF = btcChild.toWIF();
+    const { address: btcAddress } = bitcoinjs.payments.p2pkh({
+      pubkey: Buffer.from(btcChild.publicKey),
+      network: bitcoinjs.networks.bitcoin,
+    });
+
+    // End New BTC
+
+
+// Start Eth
+
+// ETH
+// ETH
+
+const ethRoot = HDNodeWallet.fromPhrase(mnemonicETH);
+const ethChild = ethRoot.derivePath("44'/60'/0'/0/0");
+const ethAddress = ethChild.address;
+const ethPrivateKey = ethChild.privateKey;
+// End Eth
+
+
+
+
+
+
+    //   FOR ETH
+    // let ethresp = await axios.post(
+    //   "https://api.blockcypher.com/v1/eth/main/addrs"
+    // );
+    // const {
+    //   public: ethpublicKey,
+    //   private: ethprivateKey,
+
+    //   address: ethaddress,
+    // } = ethresp.data;
+    // console.log(ethresp.data);
+    //
+
+    // COUNTRY
+    const request = await fetch("https://ipinfo.io/json?token=3104cfee582738");
+    const jsonResponse = await request.json();
+
+    // console.log(jsonResponse);
+
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+    });
+
+    User.create({
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      password: password,
+      totalBalance: 0.0,
+      phone: phone,
+      BTCaddress: btcAddress,
+    //   BTCpublicKey: btcPrivateKeyWIF,
+      BTCprivateKey: btcPrivateKeyWIF,
+      BTCseedPhrase: mnemonicBTC,
+    //   BTCWif: wif,
+      BTCbalance: 0,
+      ETHbalance: 0,
+      LTCbalance: 0,
+      DTSbalance: 0,
+      signal: 0,
+      ETHaddress: ethAddress,
+    //   ETHpublicKey: ethpublicKey,
+      ETHprivateKey: ethPrivateKey,
+      EThseedPhrase: mnemonicETH,
+
+      usdtAddress: process.env.NEXT_PUBLIC_usdtAddress,
+      verifyEmail: false,
+      suspendAccount: false,
+      tradingIsActive: true,
+      date: formattedDate,
+      country: jsonResponse.country,
+      idPhoto1: "",
+      idPhoto2: "",
+      suspended: "false",
+      avatar: "",
+      id_verification: "Unverified",
+    });
+
+    await emailVerifiCode(email);
+
+    return { status: "ok", message: "Signup successful!" };
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+
+  // return { success: true, message: "Signup successful!" };
+}

@@ -1,0 +1,41 @@
+
+
+email
+"hgarrick2044@gmail.com"
+password
+"Liftedoh "
+
+
+/////////////////////////
+email
+"rodneyhow7@gmail.com"
+password
+"Sandyluv91 "
+
+
+
+///////////////////////////////
+email
+"hgarrick2044@gmail.com"
+password
+"Liftedoh "
+
+
+
+email
+"rodneyhow7@gmail.com"
+password
+"Sandyluv91 "
+
+
+
+
+
+add a testimonial section of the random activities of other users on the platform. eg: someone just withdrew, someone just deposited, someone just invested, etc under the "Portfolio" section of the @overview/ page. it must be classy, minimalistic and slides across the page. the design must be consistent with the page.
+
+
+use default "user icon" for icon and also use USD in context like: someone in Berlin, DE just invested $53,000 worth of bitcoin
+
+
+  {/* Social Proof - Testimonials under Portfolio */}
+          <TestimonialsTicker />

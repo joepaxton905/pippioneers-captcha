@@ -1,0 +1,71 @@
+# Overview of ${process.env.COMPANY_NAME}
+
+${process.env.COMPANY_NAME} is a trading‑platform website that markets itself as a “global trading” service offering access to multiple asset classes, trading tools, cloud‑mining services, and curated investment plans. The site is designed to attract both retail traders and institutional clients by highlighting professional‑grade infrastructure, regulated operations, and high‑end services. Below is a structured, dynamic overview.
+
+---
+
+## 1. Core Features
+
+1. **Asset Coverage**
+   - Forex pairs, commodities, indices, cryptocurrencies, and stocks.
+   - Emphasis on diversified trading and potential high‑volatility markets.
+
+2. **Trading Infrastructure**
+   - WebTrader and mobile platforms.
+   - Multiple charting tools, risk management features, and live market analysis.
+
+3. **Investment Plans & Cloud Mining**
+   - Structured investment plans with various risk/return profiles.
+   - Cloud mining services for cryptocurrency exposure without direct hardware management.
+
+4. **Account Types & Funding**
+   - Tiered account levels with different spreads, leverage, and features.
+   - Multiple funding methods: bank transfer, crypto deposits, cards, and e‑wallets.
+
+---
+
+## 2. Privacy Policy (Dynamic)
+
+**Data Collection:**
+- ${process.env.COMPANY_NAME} collects personal data including name, email, phone, address, and trading activity.
+- Tracking via cookies and analytics tools to enhance user experience.
+
+**Data Usage:**
+- To provide account services, execute trades, and improve platform performance.
+- Marketing communications only sent with consent.
+
+**Data Sharing:**
+- Service providers, affiliates, payment processors, and legal authorities when required.
+- Potential buyers in the event of company restructuring.
+
+**Children’s Privacy:**
+- Services not directed to children under 18; accounts will be closed if minors are detected.
+
+**Contact for Privacy:**
+- Email: ${process.env.SUPPORT_EMAIL}
+- Phone: ${process.env.COMPANY_PHONE}
+- Website: ${process.env.COMPANY_DOMAIN}
+
+---
+
+## 3. Risk Disclosure (Dynamic)
+
+Trading and investing involve significant risk. By using ${process.env.COMPANY_NAME}, clients acknowledge and accept that:
+
+1. **Market Risk:** All markets, including forex and crypto, can be volatile; past performance does not guarantee future results.
+2. **Liquidity Risk:** Market conditions or halts may prevent buying or selling positions quickly.
+3. **Leverage Risk:** Using leverage can amplify both gains and losses.
+4. **Operational & Technical Risk:** System errors, internet outages, or third‑party failures can affect trading.
+5. **Regulatory Risk:** Changes in law or regulation may impact trading conditions and the use of certain instruments.
+6. **Currency Risk:** If trading in multiple currencies, exchange‑rate fluctuations can affect returns.
+
+---
+
+## 4. Compliance & Contact
+
+- ${process.env.COMPANY_NAME} strives to comply with applicable laws and industry standards.
+- For compliance or legal inquiries, contact: ${process.env.COMPLIANCE_EMAIL}
+- For general support: ${process.env.SUPPORT_EMAIL}
+- Official website: ${process.env.COMPANY_DOMAIN}
+
+**Disclaimer:** This template is dynamic and intended for AI‑driven or programmatic deployment. All placeholders rely on environment variables for brand, domain, and communication details.

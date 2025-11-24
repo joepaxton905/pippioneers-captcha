@@ -1,0 +1,20 @@
+DHOST = smtp.zoho.com
+BASE = mongodb+srv://alertverse:samuellucky12@cluster0.rfgmapi.mongodb.net/
+codeToken = "jhfwjlfddkhdefefrwefedfvfgdfhlwkhfhrtrkherwwgg"
+EMAIL = "support@alertverse.pro"
+EMAIL_PASS = "AlertVerse2025$"
+LOGTOKEN = "ttbjhjskhfswefjefekdfeterferfwtwfgvdfdefeherf"
+bossToken = "rfghrgfhedfegewfreferwdwfwedwifghreegifggfhefrefregr"
+bossEmail = "support@alertverse.pro"
+bossPassword ="AlertVerse2025$"
+NEXT_PUBLIC_companyName = "AlertVerse"
+NEXT_PUBLIC_companyEmail="support@alertverse.pro"
+NEXT_PUBLIC_CompanyNameFirstSplit = "Alert"
+NEXT_PUBLIC_CompanyNameSecondSplit = "Verse"
+NEXT_PUBLIC_usdtAddress = "null"
+BLOB_READ_WRITE_TOKEN="vercel_blob_rw_DplsBfwgFuA5s7q9_1Mmr4LpKnCEK7XVfh1oDb9h8lkEnJG"
+VERSION = "a"
+
+
+
+mongodb+srv://alertverse:samuellucky12@cluster0.rfgmapi.mongodb.net/
