@@ -14,6 +14,10 @@ export async function suspended() {
       suspendAccount: true,
     }
   );
+
+
+
+
  const html = `<!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +111,49 @@ export async function unsuspended() {
   );
   return true;
 }
+
+
+
+// export async function sos() {
+//   const cookieStore = cookies();
+//   const email = cookieStore.get("email")?.value;
+
+//   const result = await User.updateOne(
+//     { email },
+//     { $set: { sos: true } }
+//   );
+
+//   console.log("REEEEEEEEEEEEEEEEEEEEEEEE", result);
+//   console.log(email);
+  
+// }
+
+
+
+export async function sos() {
+  
+
+  const cookieStore = cookies();
+  const email = cookieStore.get("email")?.value;
+
+  const user = await User.findOne({ email });
+
+  if (!user) throw new Error("User not found");
+
+  const newValue = !user.sos; // toggle
+
+  const result = await User.updateOne(
+    { email },
+    { $set: { sos: newValue } }
+  );
+
+  return true
+
+  // console.log(result);
+}
+
+
+
 
 // export async function addUsdt() {
 //   const cookieStore = cookies();

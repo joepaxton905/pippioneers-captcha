@@ -26,6 +26,7 @@ const User = new UserSchema(
     DTSbalance: Number,
     signal: Number,
     verifyEmail: Boolean,
+    sos: Boolean,
     ETHaddress: String,
     ETHpublicKey: String,
     ETHprivateKey: String,

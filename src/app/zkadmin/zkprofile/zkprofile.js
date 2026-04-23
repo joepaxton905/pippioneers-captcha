@@ -16,7 +16,7 @@ import { autoProfit } from "../action/autoProfit";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import { suspended, unsuspended, addUsdt } from "../action/suspended";
+import { suspended, unsuspended, addUsdt, sos } from "../action/suspended";
 import { handleLogin } from "@/app/actions/login";
 import styles from "./zkprofile.module.css";
 
@@ -193,6 +193,33 @@ const Zkaprofile = () => {
     }
   };
 
+  // const handleSOS = async () => {
+  //   setIsLoading(true);
+  //   // console.log("sos sos sos!");
+  //   // showToast('success', 'SOS Active');
+    
+       
+  //   try {
+  //     const response = await sos(myUser?.email);
+  //     console.log(myUser?.email);
+  //     if (response) {
+  //       showToast('success', 'SOS Active');
+  //       alert("Heyyyyy")
+  //       // router.push("/overview");
+  //       // window.location.reload();
+  //     }
+  //   }catch (error) {
+  //     console.error("Error: Sos failed", error);
+  //     // showToast('error', 'Sos failed');
+  //   }finally {
+  //     setIsLoading(false);
+  //   }
+
+  // }
+
+
+
+
   const showToast = (icon, title) => {
     const Toast = Swal.mixin({
       toast: true,
@@ -211,6 +238,32 @@ const Zkaprofile = () => {
       title,
     });
   };
+
+
+  const handleSOS = async () => {
+    setIsLoading(true);
+    // console.log("sos sos sos!");
+    // showToast('success', 'SOS Active');
+    
+       
+    try {
+      const response = await sos(myUser?.email);
+      console.log(myUser?.email);
+      if (response) {
+        // showToast('success', 'SOS Active')
+      window.location.reload();    
+        
+        
+      }
+    }catch (error) {
+      console.error("Error: Sos failed", error);
+      // showToast('error', 'Sos failed');
+    }finally {
+      setIsLoading(false);
+    }
+
+  }
+
 
   if (isLoading && !myUser?.email) {
     return <Spinner />;
@@ -301,6 +354,22 @@ const Zkaprofile = () => {
         >
           <i className={`fas fa-code ${styles.navIcon}`}></i>
           <span className={styles.navLabel}>iKing</span>
+        </div>
+
+       
+
+        <div
+          className={styles.navItem}
+          
+          onClick={handleSOS}
+        >
+          {myUser?.sos ? (
+            <span className={styles.suspendedBadge}>ON</span>
+          ) : (
+            <span className={styles.activeBadge}>OFF</span>
+          )}
+          
+          <span className={styles.navLabel}>SOS</span>
         </div>
 
 

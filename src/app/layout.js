@@ -121,6 +121,19 @@ export default function RootLayout({ children }) {
     );
   }
 
+  if (pathname === "/sos") {
+    return (
+      <html lang="en">
+        <body>
+          <div>
+            <Topsection />
+            {children}
+          </div>
+        </body>
+      </html>
+    );
+  }
+
   // if (pathname === "/zkadmin/zkprofile") {
   //   return (
   //     <html lang="en">

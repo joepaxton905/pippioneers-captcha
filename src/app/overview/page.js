@@ -132,6 +132,29 @@ const Overview = () => {
   }, []);
   // end here
 
+  // from here
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const data = await authUser();
+        const { userData } = data;
+        setUserData(userData);
+        console.log(userData.sos);
+        if (userData.sos === true) {
+          router.push("/sos");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getUser();
+  }, []);
+  // end here
+  
+
+
+
+
   // Calculate portfolio percentages based on actual balance values
   const calculatePortfolioData = (btc, eth, total) => {
     const btcValue = btc || 0;
