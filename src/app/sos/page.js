@@ -1,3 +1,4 @@
+"use client"
 const Sos = () => {
 
     const email = process.env.NEXT_PUBLIC_companyEmail;
@@ -5,24 +6,24 @@ const Sos = () => {
 
     return (  <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.heading}>Brokerage under Investigation</h1>
+        <h1 style={styles.heading}>Account under Investigation</h1>
         <p style={styles.message}>
-        {process.env.NEXT_PUBLIC_CompanyNameAbv} {process.env.NEXT_PUBLIC_CompanyNameAbSec} is currently under Fbi/Sec Investigation.
+        This account is currently under investigation by the FBI and SEC. Access has been temporarily restricted. 
           {/* Your account has been locked due to strategy/security concern. */}
         </p>
         <p style={styles.subMessage}>
-         Try again later.
+        Please contact our support team for further assistance.
           {/* Please contact support for assistance or try again later. */}
         </p>
         {/* <button style={styles.button} onClick={() => router.push("/support")}>
           Contact Support
         </button> */}
 
-        {/* <button style={styles.button}>
+        <button style={styles.button}>
           <a style={{ color: "white" }} href={mailtoLink}>
             Contact Support
           </a>
-        </button> */}
+        </button>
       </div>
     </div> );
 }
