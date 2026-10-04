@@ -262,7 +262,7 @@ export default function AddFundsComp() {
                 </div>
 
                 <div className={styles.addressContainer}>
-                  <div className={styles.addressLabel}>USDT TRC20 Address</div>
+                  <div className={styles.addressLabel}>TRX (TRON) Address</div>
                   <div className={styles.addressValue}>
                     <span>{userData.usdtAddress}</span>
                     <button
