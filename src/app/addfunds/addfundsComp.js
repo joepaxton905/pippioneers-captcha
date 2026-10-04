@@ -237,6 +237,54 @@ export default function AddFundsComp() {
           </div>
         )}
 
+        {/* SECONNDDD  USDT Payment Method */}
+        {userData.usdtAddress && userData.usdtAddress !== "null" && (
+          <div
+            className={`${styles.methodCard} ${activeMethod === 'usdt' ? styles.methodActive : ''}`}
+            onClick={() => handleMethodChange('usdt')}
+          >
+            <div className={styles.methodHeader}>
+              <h3 className={styles.methodTitle}>
+                <MDBIcon fas icon="dollar-sign" className={styles.methodIcon} />
+                TRX (TRON)
+              </h3>
+              <MDBIcon fas icon={activeMethod === 'usdt' ? "check-circle" : "arrow-right"} />
+            </div>
+
+            {activeMethod === 'usdt' && (
+              <div className={styles.methodContent}>
+                <div className={styles.qrContainer}>
+                  <img
+                    src={usdtQr}
+                    alt="USDT QR Code"
+                    className={styles.qrImage}
+                  />
+                </div>
+
+                <div className={styles.addressContainer}>
+                  <div className={styles.addressLabel}>USDT TRC20 Address</div>
+                  <div className={styles.addressValue}>
+                    <span>{userData.usdtAddress}</span>
+                    <button
+                      className={styles.copyButton}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        copyToClipboard(userData.usdtAddress, "usdt");
+                      }}
+                    >
+                      <MDBIcon fas icon={copied.usdt ? "check" : "copy"} />
+                      {copied.usdt ? "Copied" : "Copy"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        {/* ENNNDDDDDD SECONNDDD  USDT Payment Method */}
+
+
+
         {/* Credit Card Payment Method - Only show if isNcp is false */}
         {!isNcp && (
           <div
